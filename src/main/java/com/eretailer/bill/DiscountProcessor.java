@@ -6,6 +6,7 @@ import com.eretailer.discount.PercentageDiscount;
 import com.eretailer.discount.userdiscounts.AffiliateUserDiscount;
 import com.eretailer.discount.userdiscounts.EmployeeDiscount;
 import com.eretailer.discount.userdiscounts.LoyalCustomerDiscount;
+import com.eretailer.discount.userdiscounts.ZeroPercentageDiscount;
 import com.eretailer.products.NonGrocery;
 import com.eretailer.products.Product;
 import com.eretailer.users.AffilateCustomer;
@@ -58,6 +59,26 @@ public class DiscountProcessor {
 	 Discount getEligibleCustomerBasedDiscount(Customer c){
 		PercentageDiscount  eligibleDiscount=null;
 		
+		if(c instanceof Customer){
+					
+					if(c.getNoOfYears()>2){
+						LoyalCustomerDiscount cd=new LoyalCustomerDiscount();
+						
+						if(eligibleDiscount==null){
+							eligibleDiscount=cd;
+						}else if(cd.getDiscountPercentage()>eligibleDiscount.getDiscountPercentage()){
+							eligibleDiscount=cd;
+						}
+				
+				
+			}else{
+				
+				eligibleDiscount=new ZeroPercentageDiscount();
+			}
+			
+		}
+		
+		
 		if(c instanceof EmployeeCustomer){
 			eligibleDiscount= new EmployeeDiscount();
 		}
@@ -73,19 +94,7 @@ public class DiscountProcessor {
 			}
 		}
 		
-		if(c instanceof Customer){
-			
-			if(c.getNoOfYears()>2){
-				LoyalCustomerDiscount cd=new LoyalCustomerDiscount();
-				
-				if(eligibleDiscount==null){
-					eligibleDiscount=cd;
-				}else if(cd.getDiscountPercentage()>eligibleDiscount.getDiscountPercentage()){
-					eligibleDiscount=cd;
-				}
-			}
-			
-		}
+		
 		 
 		 
 		 return eligibleDiscount;
