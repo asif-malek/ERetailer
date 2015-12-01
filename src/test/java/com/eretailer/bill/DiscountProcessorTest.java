@@ -30,7 +30,7 @@ public class DiscountProcessorTest {
 	@Before
 	public void setUp(){
 		
-		 dp=new DiscountProcessor();
+		 dp=DiscountProcessor.getInstance();
 		 createBillObjectWithProducts();
 	}
 	

@@ -1,9 +1,6 @@
 package com.eretailer.main;
 
-import static org.junit.Assert.assertEquals;
-
 import com.eretailer.bill.Bill;
-import com.eretailer.bill.DiscountProcessor;
 import com.eretailer.products.Grocery;
 import com.eretailer.products.NonGrocery;
 import com.eretailer.products.Product;
@@ -34,8 +31,8 @@ public class EretailerMain {
 	bill.add(g);
 	bill.add(g2);
 	
-	DiscountProcessor dp=new DiscountProcessor();
-	dp.processFinalAmountOnBill(bill);
+	
+	bill.processDiscountOnBill();
 	
 	System.out.println("Bill Detail:");
 

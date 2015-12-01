@@ -10,6 +10,9 @@ public class Bill {
 
 	private List<Product> products=new ArrayList<Product>();
 	
+	DiscountProcessor dp;
+
+	
 	private Customer customer;
 	
 	private double totalAmount;
@@ -19,6 +22,7 @@ public class Bill {
 	public Bill(Customer customer) {
 		super();
 		this.customer = customer;
+		dp=DiscountProcessor.getInstance();
 		
 	}
 
@@ -71,7 +75,9 @@ public class Bill {
 		this.amountAfterDiscount = amountAfterDiscount;
 	}
 	
-	
+	public void processDiscountOnBill(){
+		dp.processFinalAmountOnBill(this);
+	}
 	
 	
 	

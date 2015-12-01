@@ -12,6 +12,12 @@ import com.eretailer.users.AffilateCustomer;
 import com.eretailer.users.Customer;
 import com.eretailer.users.EmployeeCustomer;
 
+
+/**
+ * 
+ * @author asimalek
+ *This class is reponsible for applying right discount at right place
+ */
 public class DiscountProcessor {
 
 	
@@ -27,6 +33,20 @@ public class DiscountProcessor {
 		return 0;
 	}
 	
+	 
+	 private DiscountProcessor(){}
+     
+	    private static class SingletonHelper{
+	        private static final DiscountProcessor INSTANCE = new DiscountProcessor();
+	    }
+	     
+	    public static DiscountProcessor getInstance(){
+	        return SingletonHelper.INSTANCE;
+	    }
+	 
+	 
+	 
+	 
 	/**
 	 * 
 	 * @param c
